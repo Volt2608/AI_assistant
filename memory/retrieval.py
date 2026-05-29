@@ -133,17 +133,13 @@ through memory retrieval and prompt injection.
 
 import re
 
-
 def retrieve_memory(user_input, episodic_memories):
 
     relevant_memories = []
 
-    # Remove punctuation properly
     user_words = set(
         re.findall(r"\b\w+\b", user_input.lower())
     )
-
-    print("\nUSER WORDS:\n", user_words)
 
     for memory in episodic_memories:
 
@@ -151,14 +147,9 @@ def retrieve_memory(user_input, episodic_memories):
             re.findall(r"\b\w+\b", memory.lower())
         )
 
-        print("\nMEMORY WORDS:\n", memory_words)
-
         overlap = user_words.intersection(memory_words)
 
-        print("\nOVERLAP:\n", overlap)
-
         if len(overlap) >= 1:
-
             relevant_memories.append(memory)
 
     return relevant_memories[-1:]
